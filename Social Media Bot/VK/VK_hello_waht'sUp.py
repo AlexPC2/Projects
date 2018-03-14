@@ -13,8 +13,8 @@ values = {'out': 0,'count': 100,'time_offset': 60}
 vk.method('messages.get', values)
 
 flag = 0
-
 helloWords = ['привет','Привет']
+byeWords = ['пока', 'Пока'];
 
 while True:
     response = vk.method('messages.get', values)
@@ -24,7 +24,8 @@ while True:
         text = item['body']
             if (text in helloWrods) :
                  write_msg(item[u'user_id'],u'привет')
-       # if text == u'Hello':
+                     
+       # if text == 'Hello':
         #    write_msg(item[u'user_id'], item['Hello hruk!'])
         #if text == u'bye':
          #   write_msg(item[u'user_id'], item['Goodbye!'])
