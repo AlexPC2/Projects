@@ -133,6 +133,7 @@ int main(){
     generateWord(hiFrases,3,speech);
     generateWord(secondWord,3,speech);
     
+    
     // Close all files:
     fclose(hiFrases);
     fclose(secondWord);
