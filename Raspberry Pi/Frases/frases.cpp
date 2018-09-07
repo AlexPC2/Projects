@@ -60,11 +60,33 @@ public:
 };
 */
 
+//  ==  Generate word function: ==
+
+//               file with words,how many words in file, output file
+void generateWord(FILE* inWords, int n, FILE* speechFile){
+    char word[WORDSIZE]; // Word buffer
+    int i;
+    int randomWord = 0;
+    
+    //Create sentence
+    randomWord = random_number(1,3);               // Generate random word from "Hi" file
+    
+    // Now first word of this sentence should be one of this:
+    for(i = 0; i < randomWord;i++){
+        fgets(word,64,inWords);                     // Skip all words before the word we need
+     }
+    
+    puts(word);                                     // Print this random word to the screen
+    
+    fputs(word,speechFile);                         // Print first word in the file
+    
+    memset(word,0,WORDSIZE*(sizeof (word[0])) );   // Clear the word array
+}
+
 int main(){
 
     int randomCase = 0;
-    int randomWord = 0;
-    int i;
+   
     
     // Open files:
     FILE* hiFrases = fopen("Hi.txt","rt");              // Hello frases
@@ -75,7 +97,7 @@ int main(){
     FILE* speech = fopen("speech.txt","w");             // Resulting speech made of random sentences
     
     
-    //string str;     // Some word/string in file
+   /*
     
     char word[WORDSIZE]; // Word buffer
     
@@ -105,6 +127,11 @@ int main(){
     
     memset(word,0,WORDSIZE*(sizeof (word[0])) );// Clear the word array
    // }
+    
+    */
+    
+    generateWord(hiFrases,3,speech);
+    generateWord(secondWord,3,speech);
     
     // Close all files:
     fclose(hiFrases);
