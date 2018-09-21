@@ -41,8 +41,9 @@ int random_number(int min_num, int max_num)
         hi_num = min_num;
     }
     
-    srand(time(NULL));
     result = (rand() % (hi_num - low_num)) + low_num;
+    
+    printf("%d-%d -> %d\n",low_num,hi_num,result);
     return result;
 }
 
@@ -63,7 +64,8 @@ public:
 //  ==  Generate word function: ==
 
 //               file with words,how many words in file, output file
-void generateWord(FILE* inWords, int n, FILE* speechFile){
+void generateWord(FILE* inWords, int n, FILE* speechFile)
+{
     char word[WORDSIZE]; // Word buffer
     int i;
     int randomWord = 0;
@@ -87,7 +89,8 @@ int main(){
 
     int randomCase = 0;
    
-    
+    srand(time(NULL));
+
     // Open files:
     FILE* hiFrases = fopen("Hi.txt","rt");              // Hello frases
     FILE* secondWord = fopen("secondWord.txt","rt");    // After "Hello"
