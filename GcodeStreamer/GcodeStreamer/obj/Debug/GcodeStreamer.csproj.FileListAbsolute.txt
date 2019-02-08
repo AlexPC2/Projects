@@ -1,0 +1,9 @@
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\bin\Debug\GcodeStreamer.exe.config
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.csprojResolveAssemblyReference.cache
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.Form1.resources
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.Properties.Resources.resources
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.csproj.GenerateResource.Cache
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\bin\Debug\GcodeStreamer.exe
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\bin\Debug\GcodeStreamer.pdb
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.exe
+c:\users\alex\documents\visual studio 2015\Projects\GcodeStreamer\GcodeStreamer\obj\Debug\GcodeStreamer.pdb
