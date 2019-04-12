@@ -1,1 +1,1 @@
-# Some projects for fun :)-
+# Some projects for fun :)
