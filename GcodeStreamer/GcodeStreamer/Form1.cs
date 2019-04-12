@@ -27,6 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using System.IO.Ports;  // For SerialPorts
 
@@ -89,9 +90,13 @@ namespace GcodeStreamer
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
-                fileNameLabel.Text = openFileDialog1.FileName;
+               // fileNameLabel.Text = openFileDialog1.FileName;
+
+                string path = Path.GetFullPath(Path.Combine(openFileDialog1.FileName, @"..\"));     // A path to the folder 
+                fileNameLabel.Text = path;
+
                 // Get image by this file:
-               // pictureBox1.Image = Image.FromFile(openFileDialog1.FileName - ".gcde" + ".jpg");                                  // === ERROR! === Find how to get with this
+                //pictureBox1.Image = Image.FromFile(openFileDialog1.FileName.Substring(0, openFileDialog1.FileName.Length-6)  + ".svg");                                  // === ERROR! === Find how to get with this
             }
             Console.WriteLine(result); // <-- For debugging use.
         }
@@ -117,6 +122,11 @@ namespace GcodeStreamer
             }
             pictureBox1.Image = flag;
             */
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }
