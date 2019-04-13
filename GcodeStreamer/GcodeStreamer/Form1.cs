@@ -18,6 +18,7 @@
  */
 
 
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,7 +122,26 @@ namespace GcodeStreamer
 
         private void GoButton_Click(object sender, EventArgs e)
         {
+            // Check if serial port selected:
 
+            DialogResult result;
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+           
+            if (comboBox1.SelectedIndex == -1)
+            {
+                result = MessageBox.Show("Serial port not selected!", "ERROR", buttons);
+            }else
+            {
+                if (fileNameLabel.Text == "Please choose the file")
+                {
+                    result = MessageBox.Show("Please select the GCODE file", "ERROR", buttons);
+                } else {
+                    result = MessageBox.Show("Streaming started!", "Sucess", buttons);
+                }
+            }
+
+            // Now let's 
+           
             // Testing image loading:
             /*
             pictureBox1.Size = new Size(210, 110);
@@ -144,6 +164,11 @@ namespace GcodeStreamer
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

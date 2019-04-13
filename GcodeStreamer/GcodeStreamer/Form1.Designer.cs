@@ -58,6 +58,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(474, 28);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button2
             // 
@@ -164,9 +165,9 @@
             this.fileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.fileNameLabel.Location = new System.Drawing.Point(1293, 223);
             this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(108, 26);
+            this.fileNameLabel.Size = new System.Drawing.Size(225, 26);
             this.fileNameLabel.TabIndex = 11;
-            this.fileNameLabel.Text = "File name";
+            this.fileNameLabel.Text = "Please choose the file";
             // 
             // Form1
             // 
