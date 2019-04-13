@@ -193,7 +193,11 @@ namespace GcodeStreamer
 
         private void SendButton_Click(object sender, EventArgs e)                   // Send gcode button pressed
         {
-           // fileNameLabel.Text = textBox1.Text;   // Send command to CNC by yourself
+            // fileNameLabel.Text = textBox1.Text;   // Send command to CNC by yourself
+            string yourCommand = textBox1.Text;      // Your command
+            string listCommand = "Your gcode command :" + yourCommand;
+            gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
+
         }
     }
 }
