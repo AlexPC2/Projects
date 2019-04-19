@@ -197,6 +197,7 @@ namespace GcodeStreamer
             string yourCommand = textBox1.Text;      // Your command
             string listCommand = "Your gcode command :" + yourCommand;
             gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
+            // Send this user's command to the CNC by serial port:
 
         }
     }

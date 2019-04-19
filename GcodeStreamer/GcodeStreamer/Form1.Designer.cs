@@ -121,7 +121,7 @@
             this.gCode_listBox.ItemHeight = 20;
             this.gCode_listBox.Location = new System.Drawing.Point(21, 740);
             this.gCode_listBox.Name = "gCode_listBox";
-            this.gCode_listBox.Size = new System.Drawing.Size(1256, 384);
+            this.gCode_listBox.Size = new System.Drawing.Size(1243, 384);
             this.gCode_listBox.TabIndex = 7;
             // 
             // folderBrowserDialog1
