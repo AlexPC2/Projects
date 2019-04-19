@@ -12,7 +12,7 @@
 // Contacts: alex.noyanov@gmail.com
 
 String str;
-
+String lastMessage;
 void setup() {
   // put your setup code here, to run once:
 Serial.begin(9600);   // Serial port speed
@@ -24,21 +24,32 @@ void loop() {
   while(Serial.available())           // While streaming serial
   {
   str = Serial.readString();   // Reading string
+  if(str == "data")
+  {
+    Serial.println(lastMessage);
+  }
+  
+  lastMessage = str;
   }
 
-  if(str == "ON" || str == "on")
+  if(str == "ON" || str == "on" || str == "1")
   {
     delay(1000);
     digitalWrite(13,HIGH);    // Turn on the led on Arduino
-    Serial.println("Ok.LED is ON!");
+    //Serial.println("Ok.LED is ON!");
+    Serial.println("OK");
     str = "";
+
   }
 
-  if(str == "OFF" || str == "off")
+  if(str == "OFF" || str == "off" || str == "0")
   {
     delay(1000);
     digitalWrite(13,LOW);    // Turn on the led on Arduino
-    Serial.println("Ok.LED is OFF!");
+    //Serial.println("Ok.LED is OFF!");
+    Serial.println("OK");
     str = "";
   }
+
+  
 }

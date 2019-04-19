@@ -36,11 +36,15 @@ namespace GcodeStreamer
 {
     public partial class Form1 : Form
     {
+
+        SerialPort arduinoCOM;                              // Arduino COM port
+
+
         public Form1()
         {
             InitializeComponent();
             getavaialbleports();                            // Get ports when initialize
-            
+                       
         }
 
 
@@ -57,9 +61,13 @@ namespace GcodeStreamer
         {
             String[] ports = SerialPort.GetPortNames();
             comboBox1.Items.AddRange(ports);
+            
+             
         }
 
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        string arduinoAnswer = "";
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)         // Serial port get some data
         {
 
         }
@@ -171,9 +179,16 @@ namespace GcodeStreamer
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        bool portFlag = false;
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)         // If port is selected:
         {
-
+            if (comboBox1.SelectedItem.ToString() != "" && portFlag == false)
+            {
+                arduinoCOM = new SerialPort(comboBox1.SelectedItem.ToString());         // Creating new port for Arduino
+                MessageBox.Show("CNC on port " + comboBox1.SelectedItem.ToString());
+                arduinoCOM.Open();
+                portFlag = true;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)           
@@ -193,12 +208,24 @@ namespace GcodeStreamer
 
         private void SendButton_Click(object sender, EventArgs e)                   // Send gcode button pressed
         {
-            // fileNameLabel.Text = textBox1.Text;   // Send command to CNC by yourself
-            string yourCommand = textBox1.Text;      // Your command
-            string listCommand = "Your gcode command :" + yourCommand;
-            gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
-            // Send this user's command to the CNC by serial port:
+            if (arduinoCOM == null)                                                 // If port is not selected
+            {
+                MessageBox.Show("Please select the port!");                         // Asking user to select it
+            }
+            else
+            {
 
+                // fileNameLabel.Text = textBox1.Text;   // Send command to CNC by yourself
+                string yourCommand = textBox1.Text;      // Your command
+
+                // Send this user's command to the CNC by serial port:
+               
+                arduinoCOM.Write(yourCommand);
+                Console.Write(yourCommand);
+               // arduinoCOM.Close();
+                string listCommand = "Your gcode command :" + yourCommand;
+                gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
+            }
         }
     }
 }
