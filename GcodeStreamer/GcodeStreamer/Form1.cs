@@ -61,15 +61,16 @@ namespace GcodeStreamer
         {
             String[] ports = SerialPort.GetPortNames();
             comboBox1.Items.AddRange(ports);
-            
-             
         }
 
-        string arduinoAnswer = "";
+
+        string arduinoAnswer;
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)         // Serial port get some data
         {
-
+            arduinoAnswer = arduinoCOM.ReadLine();
+            
+            gCode_listBox.Items.Add(arduinoAnswer);
         }
 
         private void serialPort1_PinChanged(object sender, System.IO.Ports.SerialPinChangedEventArgs e)
@@ -93,7 +94,6 @@ namespace GcodeStreamer
 
             Console.ReadLine();
         }
-
 
         private void LoadFile_Click(object sender, EventArgs e)
         {
@@ -168,8 +168,6 @@ namespace GcodeStreamer
 
                     // And now when all possible problems solved the code
                     //gCode_listBox.it
-
-
                 }
             }
         }
@@ -179,15 +177,15 @@ namespace GcodeStreamer
 
         }
 
-        bool portFlag = false;
+        //bool portFlag = false;
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)         // If port is selected:
         {
-            if (comboBox1.SelectedItem.ToString() != "" && portFlag == false)
+            if (comboBox1.SelectedItem.ToString() != "" /*&& portFlag == false*/)
             {
                 arduinoCOM = new SerialPort(comboBox1.SelectedItem.ToString());         // Creating new port for Arduino
                 MessageBox.Show("CNC on port " + comboBox1.SelectedItem.ToString());
-                arduinoCOM.Open();
-                portFlag = true;
+                
+                //portFlag = true;
             }
         }
 
@@ -219,12 +217,22 @@ namespace GcodeStreamer
                 string yourCommand = textBox1.Text;      // Your command
 
                 // Send this user's command to the CNC by serial port:
-               
+                arduinoCOM.Open();
                 arduinoCOM.Write(yourCommand);
                 Console.Write(yourCommand);
                // arduinoCOM.Close();
+           
                 string listCommand = "Your gcode command :" + yourCommand;
+
                 gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
+              
+                while(arduinoAnswer == null)
+                {
+                    arduinoAnswer = arduinoCOM.ReadLine();
+                }
+
+                arduinoCOM.Close();
+                gCode_listBox.Items.Add(arduinoAnswer); // Add arduino answer to the list of all commands
             }
         }
     }
