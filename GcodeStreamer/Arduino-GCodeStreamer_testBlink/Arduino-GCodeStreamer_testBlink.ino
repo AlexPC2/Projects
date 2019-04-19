@@ -6,6 +6,11 @@
 // By Alex Noyanov
 // April 19 2019
 
+// This example test is for testing 
+// how to send data to Arduino with Serial
+
+// Contacts: alex.noyanov@gmail.com
+
 String str;
 
 void setup() {
@@ -23,13 +28,17 @@ void loop() {
 
   if(str == "ON" || str == "on")
   {
+    delay(1000);
     digitalWrite(13,HIGH);    // Turn on the led on Arduino
     Serial.println("Ok.LED is ON!");
+    str = "";
   }
 
   if(str == "OFF" || str == "off")
   {
+    delay(1000);
     digitalWrite(13,LOW);    // Turn on the led on Arduino
     Serial.println("Ok.LED is OFF!");
+    str = "";
   }
 }
