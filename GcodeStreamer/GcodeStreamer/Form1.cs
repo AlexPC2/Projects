@@ -145,6 +145,8 @@ namespace GcodeStreamer
             }
         }
 
+        bool pauseBool = false;                                                     // Pause bool is desabled and Pause button not clicked
+
         private void GoButton_Click(object sender, EventArgs e)
         {
             // Check if serial port selected:
@@ -168,6 +170,17 @@ namespace GcodeStreamer
 
                     // And now when all possible problems solved the code
                     //gCode_listBox.it
+
+                    foreach (string command in gCode_listBox.Items)
+                    {
+                        string currentCommand = command;
+                        if(pauseBool != true)                                                // Check if Pause or not
+                        {
+                            Console.WriteLine(command);
+                            arduinoCOM.Open();
+                            arduinoCOM.Write(command);
+                        }
+                    }
                 }
             }
         }
@@ -204,6 +217,7 @@ namespace GcodeStreamer
            
         }
 
+        int dataSpeed = 1000;                                                       // Delay between data requests
         private void SendButton_Click(object sender, EventArgs e)                   // Send gcode button pressed
         {
             if (arduinoCOM == null)                                                 // If port is not selected
@@ -225,15 +239,37 @@ namespace GcodeStreamer
                 string listCommand = "Your gcode command :" + yourCommand;
 
                 gCode_listBox.Items.Add(listCommand);    // Add your gcode command to the list of all commands in progress list
-              
+
+                int dataCounter = 0;
+                int maxCounter = 10;
+
+                
                 while(arduinoAnswer == null)
                 {
                     arduinoAnswer = arduinoCOM.ReadLine();
+                    //System.Threading.Thread.Sleep(dataSpeed);
+                    if(dataCounter > maxCounter)
+                    {
+                        Console.WriteLine(" === Error! OUT OF TIME ===");
+                        break;
+                    }
                 }
-
+                
                 arduinoCOM.Close();
                 gCode_listBox.Items.Add(arduinoAnswer); // Add arduino answer to the list of all commands
             }
+        }
+
+        private void PauseClicked(object sender, EventArgs e)       // Pause button clicked
+        {
+            if(pauseBool == false)
+            {
+                pauseBool = true;
+            }else
+            {
+                pauseBool = true;
+            }
+
         }
     }
 }
